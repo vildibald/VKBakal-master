@@ -1,0 +1,228 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" xmlns:local="clr-namespace:SilverlightApplication3" x:Class="SilverlightApplication3.MainPage"
+    mc:Ignorable="d" Height="239" Width="361">
+
+
+    <Grid x:Name="LayoutRoot" Margin="0,0,-650,-430">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="3,1" StartPoint="0,0">
+                <GradientStop Color="#0C0C0C" Offset="0" />
+                <GradientStop Color="#0C0C0C" Offset="0.4" />
+                <GradientStop Color="#202030" Offset="0.2" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid Grid.Column="1" x:Name="outterGrid">
+            <Grid.Clip>
+                <RectangleGeometry x:Name="cliper" Rect="0,0,1024,768"/>
+
+            </Grid.Clip>
+
+            <Canvas Background="White" Height="600" Width="800" HorizontalAlignment="Left" Margin="5,5,0,0" x:Name="canvas1" VerticalAlignment="Top" 
+				MouseLeftButtonDown="canvas1_MouseLeftButtonDown" MouseMove="canvas1_MouseMove" MouseLeftButtonUp="canvas1_MouseLeftButtonUp"
+				MouseRightButtonDown="canvas1_MouseRightButtonDown" MouseRightButtonUp="canvas1_MouseRightButtonUp" RenderTransformOrigin="0.5,0.5" SizeChanged="canvas1_SizeChanged">
+                <Canvas.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform x:Name="ScaleTransform"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform x:Name="DragTransform"/>
+                    </TransformGroup>
+                </Canvas.RenderTransform>
+
+                <Canvas.Clip>
+                    <RectangleGeometry Rect="0,0,800,600" />
+
+                </Canvas.Clip>
+
+            </Canvas>
+
+
+            <sdk:TabControl HorizontalAlignment="Left" Height="450" Margin="810,5,0,0" VerticalAlignment="Top" Width="200" x:Name="MainTabControl">
+                <sdk:TabItem Header="Runge">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="81*"/>
+                            <ColumnDefinition Width="13*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.Background>
+
+                            <RadialGradientBrush RadiusX="2" RadiusY="4">
+                                <GradientStop Color="#0C0C0C" Offset="0" />
+                                <GradientStop Color="#303040" Offset="0.4" />
+                            </RadialGradientBrush>
+                        </Grid.Background>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="49" Content="Interval:" Foreground="Silver" Margin="10,10,0,0"/>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="120" Content="Number of points:" Foreground="Silver" Margin="10,80,0,0"/>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="120" Content="Number of intervals:" Foreground="Silver" Margin="10,150,0,0"/>
+
+                        <TextBox x:Name="leftIntervalTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" TextWrapping="Wrap" Text="0"  Width="30" RenderTransformOrigin="0.261,-0.045" AcceptsReturn="True" KeyDown="doubleAccepted" Margin="40,30,0,0"/>
+                        <TextBox x:Name="rightIntervalTextBox" HorizontalAlignment="Left" Height="23" Margin="113,30,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="30" RenderTransformOrigin="-0.4,-0.65" KeyDown="doubleAccepted"/>
+                        <TextBox x:Name="number_of_points_TextBox" HorizontalAlignment="Left" Height="23" Margin="40,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" Text="0" KeyDown="intAccepted"/>
+                        <TextBox x:Name="number_of_intervals_TextBox" HorizontalAlignment="Left" Height="23" Margin="40,170,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="35" RenderTransformOrigin="0.2,-1.05" KeyDown="intAccepted"/>
+
+                        <Button x:Name="runge_FunctionButton" Content="Draw" HorizontalAlignment="Left" Margin="100,330,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.64,0.136" Click="runge_button_Click" Grid.ColumnSpan="2" Height="23" />
+                        <TextBox x:Name="degree_runge_TextBox" HorizontalAlignment="Left" Height="23" Margin="40,240,0,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="35"/>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="120" Content="Degree:" Foreground="Silver" Margin="10,220,0,0"/>
+                        <Button x:Name="RungeDemoButton" Content="Demo" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="RungeDemoButtonClick"/>
+                    </Grid>
+                </sdk:TabItem>
+                <sdk:TabItem Header="Bell">
+                    <Grid>
+                        <Grid.Background>
+                            <RadialGradientBrush RadiusX="2" RadiusY="4">
+                                <GradientStop Color="#0C0C0C" Offset="0" />
+                                <GradientStop Color="#303040" Offset="0.4" />
+                            </RadialGradientBrush>
+                        </Grid.Background>
+
+                        <TextBox x:Name="bellTextBox0" HorizontalAlignment="Left" Height="23" Margin="20,20,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="35" RenderTransformOrigin="-0.057,-0.783"/>
+                        <TextBox x:Name="bellTextBox1" HorizontalAlignment="Left" Height="23" Margin="20,53,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="35" RenderTransformOrigin="0.381,0.111"/>
+                        <TextBox x:Name="bellTextBox2" HorizontalAlignment="Left" Height="23" Margin="20,86,0,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Width="35"/>
+                        <TextBox x:Name="bellTextBox3" HorizontalAlignment="Left" Height="23" Margin="20,119,0,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="35"/>
+                        <TextBox x:Name="bellTextBox4" HorizontalAlignment="Left" Height="23" Margin="20,152,0,0" TextWrapping="Wrap" Text="4" VerticalAlignment="Top" Width="35"/>
+                        <Button x:Name="bellButton" Content="Draw" HorizontalAlignment="Left" Margin="100,330,0,0" VerticalAlignment="Top" Width="75" Click="bellButton_Click"/>
+                        <Button x:Name="BellDemoButton" Content="Demo" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="BellDemoButtonClick"/>
+                    </Grid>
+                </sdk:TabItem>
+                <sdk:TabItem Header="Global B-spline">
+                    <Grid>
+                        <Grid.Background>
+                            <RadialGradientBrush RadiusX="2" RadiusY="4">
+                                <GradientStop Color="#0C0C0C" Offset="0" />
+                                <GradientStop Color="#303040" Offset="0.4" />
+                            </RadialGradientBrush>
+                        </Grid.Background>
+
+                        <Button x:Name="rungeBSplineButton" Content="Draw" HorizontalAlignment="Left" Margin="100,330,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.64,0.136" Click="GlobalBSplineButtonClick" Grid.ColumnSpan="2" />
+                        <Button x:Name="RungeBSplineDemoButton" Content="Demo" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="GlobalBSplineDemoButtonClick"/>
+                        <ComboBox x:Name="FunctionSelect_ComboBox" HorizontalAlignment="Left" Margin="85,297,0,0" VerticalAlignment="Top" Width="90">
+                            <local:Function>UserDefined</local:Function>
+                            <local:Function>Sinus</local:Function>
+                            <local:Function>Runge</local:Function>
+
+                        </ComboBox>
+
+                        <TextBox x:Name="rungeBSplineDegreeTextBox" HorizontalAlignment="Left" Height="23" Margin="60,27,0,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="40"/>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="120" Content="Degree:" Foreground="Silver" Margin="10,30,0,0"/>
+                        <TextBox x:Name="FunctionBSplineXTextBox" HorizontalAlignment="Left" Height="120" Margin="25,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="60" Content="Knots:" Foreground="Silver" Margin="10,70,0,0"/>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="70" Content="Derivations:" Foreground="Silver" Margin="10,261,0,0"/>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="93" Content="Function values:" Foreground="Silver" Margin="95,70,0,0"/>
+                        <TextBox x:Name="FunctionBSplineYTextBox" HorizontalAlignment="Left" Height="120" Margin="110,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" AcceptsReturn="True"/>
+                        <TextBox x:Name="FunctionBSplineLeftDerTextBox" HorizontalAlignment="Left" Height="23" Margin="80,257,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" Text="0"/>
+                        <TextBox x:Name="FunctionBSplineRightDerTextBox" HorizontalAlignment="Left" Height="23" Margin="140,257,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" Text="0"/>
+                        <CheckBox x:Name="UniformGlobalBSpline_CheckBox" Content="Uniform" HorizontalAlignment="Left" Margin="10,297,0,0" VerticalAlignment="Top" Foreground="White"/>
+                    </Grid>
+                </sdk:TabItem>
+                <sdk:TabItem Header="Basis">
+                    <Grid>
+                        <Grid.Background>
+                            <RadialGradientBrush RadiusX="2" RadiusY="4">
+                                <GradientStop Color="#0C0C0C" Offset="0" />
+                                <GradientStop Color="#303040" Offset="0.4" />
+                            </RadialGradientBrush>
+                        </Grid.Background>
+                        <TextBox x:Name="knots_basis_TextBox" HorizontalAlignment="Left" Height="70" Margin="20,109,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
+                        <Button x:Name="basisButton" Content="Draw" HorizontalAlignment="Left" Margin="100,330,0,0" VerticalAlignment="Top" Width="75" Click="basisButton_Click" Height="23"/>
+                        <TextBox x:Name="degree_basis_TextBox" HorizontalAlignment="Left" Height="23" Margin="60,27,0,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="35" RenderTransformOrigin="1.229,-1.152"/>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" Margin="10,30,0,0" VerticalAlignment="Top" Width="48" Content="Degree:" Foreground="Silver"/>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" Margin="10,80,0,0" VerticalAlignment="Top" Width="48" Content="Knots:" Foreground="Silver"/>
+                        <Button x:Name="BasisDemoButton" Content="Demo" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="BasisDemoButtonClick"/>
+                    </Grid>
+                </sdk:TabItem>
+                <sdk:TabItem Header="B-Spline">
+                    <Grid>
+                        <Grid.Background>
+                            <RadialGradientBrush RadiusX="2" RadiusY="4">
+                                <GradientStop Color="#0C0C0C" Offset="0" />
+                                <GradientStop Color="#303040" Offset="0.4" />
+                            </RadialGradientBrush>
+                        </Grid.Background>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" Margin="10,70,0,0" VerticalAlignment="Top" Width="42" Content="Knots:" Foreground="Silver" />
+                        <TextBox x:Name="spline_knots_TextBox" HorizontalAlignment="Left" Height="145" Margin="25,110,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.5,0.935" AcceptsReturn="True"/>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" Margin="95,70,0,0" VerticalAlignment="Top" Width="120" Content="Control Points:" Foreground="Silver"/>
+                        <TextBox x:Name="spline_cp_TextBox" HorizontalAlignment="Left" Height="145" Margin="110,110,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="50" AcceptsReturn="True"/>
+                        <Button x:Name="spline_Button" Content="Draw" HorizontalAlignment="Left" Height="23" Margin="100,330,0,0" VerticalAlignment="Top" Width="75"  Click="spline_Button_Click"/>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" Margin="10,264,0,0" VerticalAlignment="Top" Width="150" Content="Values are separated " Foreground="Silver" />
+                        <sdk:Label HorizontalAlignment="Left" Height="28" Margin="10,276,0,0" VerticalAlignment="Top" Width="150" Content="with space bar. " Foreground="Silver" />
+                        <TextBox x:Name="degree_TextBox" HorizontalAlignment="Left" Height="23" Margin="60,27,0,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="40"/>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" Margin="10,30,0,0" VerticalAlignment="Top" Width="48" Content="Degree:" Foreground="Silver"/>
+                        <sdk:Label x:Name="number_of_knots_Label" HorizontalAlignment="Left" Height="28" Margin="110,65,0,0" VerticalAlignment="Top" Width="25" Foreground="White" Content=""/>
+                        <sdk:Label x:Name="number_of_cp_Label" HorizontalAlignment="Left" Height="28" Margin="10,65,0,0" VerticalAlignment="Top" Width="25"  Foreground="White" Content=""/>
+                        <Button x:Name="BSplineDemoButton" Content="Demo" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="BSplineDemoButtonClick"/>
+                        <CheckBox x:Name="UniformBSpline_CheckBox" Content="Uniform" HorizontalAlignment="Left" Margin="10,297,0,0" VerticalAlignment="Top" Foreground="White"/>
+                    </Grid>
+                </sdk:TabItem>
+                <sdk:TabItem Header="H-Spline">
+                    <Grid>
+                        <Grid.Background>
+                            <RadialGradientBrush RadiusX="2" RadiusY="4">
+                                <GradientStop Color="#0C0C0C" Offset="0" />
+                                <GradientStop Color="#303040" Offset="0.4" />
+                            </RadialGradientBrush>
+                        </Grid.Background>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" Margin="10,30,0,0" VerticalAlignment="Top" Width="120" Content="Knots:" Foreground="Silver"/>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" Margin="95,30,0,0" VerticalAlignment="Top" Width="120" Content="Function values:" Foreground="Silver"/>
+                        <TextBox x:Name="hermite_X_TextBox" HorizontalAlignment="Left" Height="120" Margin="25,70,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="50" AcceptsReturn="True"/>
+                        <TextBox x:Name="hermite_Y_TextBox" HorizontalAlignment="Left" Height="120" Margin="110,70,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.5,0.935" AcceptsReturn="True"/>
+                        <TextBox x:Name="derivation_TextBox" HorizontalAlignment="Left" Height="45" Margin="25,222,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="138" RenderTransformOrigin="0.5,0.935" AcceptsReturn="True"/>
+
+                        <sdk:Label HorizontalAlignment="Left" Height="28" Margin="10,200,0,0" VerticalAlignment="Top" Width="65" Content="Derivations:" Foreground="Silver"/>
+                        <Button x:Name="hermite_Button" Content="Draw" HorizontalAlignment="Left" Height="23" Margin="100,330,0,0" VerticalAlignment="Top" Width="75"  Click="hermite_Button_Click"/>
+                        <CheckBox x:Name="HermiteRegularCheckBox" Content="Regular curve" HorizontalAlignment="Left" Margin="10,295,0,0" VerticalAlignment="Top" Foreground="White" />
+                        <Button x:Name="HSplineDemoButton" Content="Demo" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="HSplineDemoButtonClick"/>
+                    </Grid>
+                </sdk:TabItem>
+                <sdk:TabItem Header="C-Spline">
+                    <Grid>
+                        <Grid.Background>
+                            <RadialGradientBrush RadiusX="2" RadiusY="4">
+                                <GradientStop Color="#0C0C0C" Offset="0" />
+                                <GradientStop Color="#303040" Offset="0.4" />
+                            </RadialGradientBrush>
+                        </Grid.Background>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" Margin="10,82,0,0" VerticalAlignment="Top" Width="120" Content="Function values:" Foreground="Silver"/>
+                        <TextBox x:Name="clamped_XRight_TextBox" HorizontalAlignment="Left" Height="23" Margin="140,205,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="35" AcceptsReturn="True"/>
+                        <TextBox x:Name="clamped_XLeft_TextBox" HorizontalAlignment="Left" Height="23" Margin="80,205,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="35" AcceptsReturn="True"/>
+                        <TextBox x:Name="clamped_Y_TextBox" HorizontalAlignment="Left" Height="75" Margin="25,110,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="138" RenderTransformOrigin="0.5,0.935" AcceptsReturn="True"/>
+                        <TextBox x:Name="left_derivation_TextBox" HorizontalAlignment="Left" Height="23" Margin="80,255,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="35" RenderTransformOrigin="0.5,0.935" AcceptsReturn="True"/>
+                        <TextBox x:Name="right_derivation_TextBox" HorizontalAlignment="Left" Height="23" Margin="140,255,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="35" RenderTransformOrigin="0.5,0.935" AcceptsReturn="True"/>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" Margin="10,258,0,0" VerticalAlignment="Top" Width="65" Content="Derivations:" Foreground="Silver"/>
+                        <sdk:Label HorizontalAlignment="Left" Height="28" Margin="30,208,0,0" VerticalAlignment="Top" Width="65" Content="Interval:" Foreground="Silver"/>
+                        <Button x:Name="clamped_Button" Content="Draw" HorizontalAlignment="Left" Height="23" Margin="100,330,0,0" VerticalAlignment="Top" Width="75"  Click="ClampedSplineButtonClick"/>
+                        <CheckBox x:Name="ClampedRegularCheckBox" Content="Regular curve" HorizontalAlignment="Left" Margin="10,295,0,0" VerticalAlignment="Top" Foreground="White" />
+                        <Button x:Name="CSplineDemoButton" Content="Demo" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="CSplineDemoButtonClick"/>
+                    </Grid>
+                </sdk:TabItem>
+            </sdk:TabControl>
+            <Button x:Name="Zoom_out_button" Content="-" HorizontalAlignment="Left" Height="25" Margin="415,638,0,0" VerticalAlignment="Top" Width="25" Click="Zoom_out_button_click"/>
+            <Button x:Name="Zoom_in_button" Content="+" HorizontalAlignment="Left" Height="25" Margin="415,610,0,0" VerticalAlignment="Top" Width="25" Click="Zoom_in_button_click"/>
+            <Button x:Name="Zoom_reset_button" Content="Reset" HorizontalAlignment="Left" Height="23" Margin="610,640,0,0" VerticalAlignment="Top" Width="80" Click="Zoom_reset_button_click"/>
+            <Button x:Name="OptimalZoom_Button" Content="Optimal" HorizontalAlignment="Left" Height="23" Margin="695,610,0,0" VerticalAlignment="Top" Width="80" Click="OptimalZoom_ButtonClick"/>
+            <Button Content="Clear canvas"
+				Width="80"
+				Click="btn_Click" Height="23"  Margin="695,640,236,6"/>
+            <TextBox x:Name="y_max_TextBox" HorizontalAlignment="Left" Height="23" Margin="500,609,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.5,0.474"/>
+            <TextBox x:Name="x_min_TextBox" HorizontalAlignment="Left" Height="23" Margin="445,625,0,0" TextWrapping="Wrap" Text="-10" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.564,0.459"/>
+            <TextBox x:Name="y_min_TextBox" HorizontalAlignment="Left" Height="23" Margin="500,637,0,0" TextWrapping="Wrap" Text="-10" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.564,0.459"/>
+            <TextBox x:Name="x_max_TextBox" HorizontalAlignment="Left" Height="23" Margin="555,625,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.564,0.459"/>
+            <TextBox x:Name="curveThickTextBox" HorizontalAlignment="Left" Height="23" Margin="10,635,0,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.474"/>
+            <Button x:Name="curveThickButton" Content="Confirm" HorizontalAlignment="Left" Margin="50,635,0,0" VerticalAlignment="Top" Width="80" Click="CurveThick" Height="23"/>
+            <Button x:Name="transform_wa_Button" Content="Confirm" HorizontalAlignment="Left" Margin="610,610,0,0" VerticalAlignment="Top" Width="80" Click="ChangeWAButtonClick" Height="23"/>
+            <Button Content="Load" x:Name="LoadFromFileButton" HorizontalAlignment="Left" Margin="820,479,0,0" VerticalAlignment="Top" Width="90" Height="22" Click="LoadFromFileButtonClick"/>
+            <Button Content="Save" x:Name="SaveToFileButton" HorizontalAlignment="Left" Margin="820,517,0,0" VerticalAlignment="Top" Width="90" Height="22" Click="SaveToFileButtonClick"/>
+            <Button HorizontalAlignment="Left" Margin="210,635,0,0" VerticalAlignment="Top" Width="80" Height="23" Click="SetCanvasWhite" Content="Reverse"/>
+            <sdk:Label HorizontalAlignment="Left" Height="28" Margin="10,615,0,0" VerticalAlignment="Top" Width="120" Foreground="Silver" Content="Curve thickness:"/>
+            <sdk:Label HorizontalAlignment="Left" Height="28" Margin="210,615,0,0" VerticalAlignment="Top" Width="120" Foreground="Silver" Content="Canvas color:"/>
+            <sdk:Label Name="VersionLabel" HorizontalAlignment="Left" Height="23" Margin="950,640,0,0" VerticalAlignment="Top" Width="50" Foreground="Gray"/>
+
+
+        </Grid>
+        <TextBox x:Name="haha" HorizontalAlignment="Left" Height="50" Margin="820,550,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Background="Transparent" BorderBrush="LightGray" BorderThickness="2" Foreground="BlanchedAlmond"/>
+    </Grid>
+
+</UserControl>
